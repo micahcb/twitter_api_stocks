@@ -102,9 +102,3 @@ if response.status_code != 200:
 print("Response code: {}".format(response.status_code))
 json_response = response.json()
 json_response
-
-#take response and sentiment analyze it 
-import nltk
-word_list2 = [word for line in part_two_one['course_title'] for word in line.split()]
-word_frequency = nltk.FreqDist(word_list2)
-type(word_frequency)
