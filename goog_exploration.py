@@ -23,17 +23,17 @@ resp = session.get(f"https://finance.yahoo.com/crypto?offset=0&count={num_curren
 tables = pd.read_html(resp.html.raw_html)               
 df = tables[0].copy()
 symbols_yf = df.Symbol.tolist()
-print(symbols_yf[:15])
 print(df.head(5))
-tickers = symbols_yf[:15]
+tickers = symbols_yf[:25]
 tickers = [yf.Ticker(ticker) for ticker in tickers]
 max_type = ''
 max_ratio = 0
-for ticker in tickers:
-    t_info = ticker.info
-    if (((t_info['fiftyTwoWeekHigh'] - t_info['fiftyTwoWeekLow']) / t_info['fiftyTwoWeekHigh']) > max_ratio):
-        max_ratio = ((t_info['fiftyTwoWeekHigh'] - t_info['fiftyTwoWeekLow']) / t_info['fiftyTwoWeekHigh'])
-        max_type = t_info['name']
+# for ticker in tickers:
+#     t_info = ticker.info
+#     if (((t_info['fiftyTwoWeekHigh'] - t_info['fiftyTwoWeekLow']) / t_info['fiftyTwoWeekHigh']) > max_ratio):
+#         max_ratio = ((t_info['fiftyTwoWeekHigh'] - t_info['fiftyTwoWeekLow']) / t_info['fiftyTwoWeekHigh'])
+#         max_type = t_info['name']
 
 
-print(max_type)
+print(type(df))
+df.to_csv('stocks.csv')
